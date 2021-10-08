@@ -1,0 +1,65 @@
+<!-- Problem
+Create an index.html
+Make two input tags for taking name and phone number
+Make a button with the name create
+on click, you should create and append a card into a result
+The card should contain information of only that user name
+It should have a button to show/hide number
+On click of the button, you should toggle the users number on the card
+Use only a single eventListener for for the show or hide button, and you can stop the propogation at in that function, so that it doesn't propogate beyond that parent element' -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        document.body.onload=()=>{
+            let nameBox=document.createElement('input');
+        nameBox.type="text";
+        nameBox.placeholder="enter name";
+        let numberBox=document.createElement('input');
+        numberBox.type="number";
+        numberBox.placeholder="enter phone number";
+        let btn=document.createElement('button');
+        btn.textContent="create";
+        document.body.appendChild(nameBox);
+        document.body.appendChild(numberBox);
+        document.body.appendChild(btn);
+        btn.addEventListener('click',()=>{
+           if(!nameBox.value||!numberBox.value){
+               alert("all input filed are requred!")
+               return;
+           }
+           let container=document.createElement('div');
+           let name=document.createElement('h3');
+           name.textContent=nameBox.value;
+           container.appendChild(name);
+           let showHideBtn=document.createElement('button');
+           showHideBtn.textContent=`Show/hide  phone Number`;
+           let number=document.createElement('div');
+           number.textContent="";
+           container.appendChild(number)
+           container.appendChild(showHideBtn)
+           showHideBtn.addEventListener('click',()=>{
+               if(number.textContent=="")
+               number.textContent=numberBox.value;
+               else
+               number.textContent=""
+               container.appendChild(number)
+           })
+         container.style.border="1px solid black";container.style.width="200px"
+         container.className="container"
+           document.body.appendChild(container);
+       let count=document.querySelectorAll(".container");
+       console.log("total card append"+count.length)
+        })
+        
+        }
+       
+    </script>
+</body>
+</html>
